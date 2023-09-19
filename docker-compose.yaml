@@ -10,4 +10,4 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
     volumes:
-      - ./psql/init_test_db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+      - ./.github/workflows/init_test_db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
