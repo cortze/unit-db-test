@@ -1,0 +1,13 @@
+# docker-compose.yml
+version: '3.7'
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    volumes:
+      - ./psql/init_test_db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
