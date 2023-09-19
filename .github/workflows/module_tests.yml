@@ -21,6 +21,8 @@ jobs:
           POSTGRES_USER: test_user
           POSTGRES_PASSWORD: password
           POSTGRES_DB: test_database
+        volumes:
+          - ./psql/init_test_db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -29,9 +31,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Run SQL script
-      run: |
-        docker exec -i postgres psql -U ${POSTGRES_USER} -d {POSTGRES_PASSWORD} < init_test_db.sql
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
