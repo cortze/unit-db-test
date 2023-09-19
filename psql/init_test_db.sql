@@ -1,6 +1,3 @@
--- Create default database for testing:
-CREATE DATABASE test_database;
-
 -- Create custom tables for the testing
 CREATE TABLE IF NOT EXISTS test_table(
 	id INT,
