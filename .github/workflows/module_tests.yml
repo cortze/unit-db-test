@@ -4,10 +4,8 @@ name: Module Tests
 on: [push, pull_request]
 
 jobs:
-  build_test_db:
 
-
-  build_python_mod_test:
+  build:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
