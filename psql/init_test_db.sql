@@ -1,9 +1,6 @@
 -- Create default database for testing:
 CREATE DATABASE test_database;
 
--- Allow user to read/write from the db:
-GRANT ALL PRIVILEGES ON DATABASE test_database to test_user;
-
 -- Create custom tables for the testing
 CREATE TABLE IF NOT EXISTS test_table(
 	id INT,
