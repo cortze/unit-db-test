@@ -30,13 +30,11 @@ jobs:
           --health-retries 5
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Run SQL script
       run: |
         docker exec -i postgres psql -U ${POSTGRES_USER} -d {POSTGRES_PASSWORD} < init_test_db.sql
 
-    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
