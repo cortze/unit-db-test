@@ -22,7 +22,7 @@ jobs:
           POSTGRES_PASSWORD: password
           POSTGRES_DB: test_database
         volumes:
-          - ./psql/init_test_db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+          - ${{ github.workspace }}/psql/init_test_db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
