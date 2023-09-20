@@ -3,3 +3,6 @@
 
 # venv folder
 venv/
+
+# caches
+*/__pycache__/

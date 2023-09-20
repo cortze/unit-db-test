@@ -27,11 +27,10 @@ class Postgres:
         self.password = password
         self.database = database
         if url is not None:
-            self.engine = sa.create_engine(url)
+            self.engine = sa.create_engine(url=url)
         else:
-            self.engine = sa.create_engine(
-                port=port, database=database, user=user, password=password, host=host
-            )
+            self.url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
+            self.engine = sa.create_engine(url=url)
         self.conn = self.engine.connect()
 
     def get_df_from_sql_query(self, sql_query):

@@ -3,7 +3,7 @@ from dbtest.unittest import DBintegrityTest
 
 
 class TestDBTestModule(DBintegrityTest):
-    db_config_file = '../.env'
+    db_config_file = '.env'
 
     def test_not_null_items_in_column(self):
         # the query that SHOULDN'T create an assertion

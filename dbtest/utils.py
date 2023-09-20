@@ -4,11 +4,11 @@ from dotenv import load_dotenv
 
 
 def load_credentials_from(file):
-    config = load_dotenv(file)
-    return get_db_from_config(config)
+    _ = load_dotenv(file)
+    return get_db_from_env()
 
 
-def get_db_from_config(config):
+def get_db_from_env():
     user = os.getenv('DB_USER')
     password = os.getenv('DB_PASSWORD')
     host = os.getenv('DB_HOST')

@@ -3,16 +3,17 @@ name: Module Tests
 
 on: [push, pull_request]
 
+
+env:
+  PGPASSWORD: password
+
 jobs:
-  build_test_db:
-
-
-  build_python_mod_test:
+  build:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.10", "3.11"]
 
     services:
       postgres:
@@ -30,13 +31,12 @@ jobs:
           --health-retries 5
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Run SQL script
-      run: |
-        docker exec -i postgres psql -U ${POSTGRES_USER} -d {POSTGRES_PASSWORD} < init_test_db.sql
-
     - uses: actions/checkout@v3
+
+    - name: Check psql mounting point
+      run: | 
+        psql -h localhost -U test_user -d test_database -a -f psql/init_test_db.sql
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:

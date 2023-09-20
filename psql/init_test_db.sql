@@ -1,3 +1,6 @@
+-- create degfault user
+CREATE USER test_user WITH PASSWORD 'password';
+
 -- Create default database for testing:
 CREATE DATABASE test_database;
 
