@@ -3,6 +3,10 @@ name: Module Tests
 
 on: [push, pull_request]
 
+
+env:
+  PGPASSWORD: password
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,7 +35,6 @@ jobs:
 
     - name: Check psql mounting point
       run: | 
-        PGPASSWORD=password
         psql -h localhost -U test_user -P password -d test_database -a -f psql/init_test_db.sql
 
     - name: Set up Python ${{ matrix.python-version }}
