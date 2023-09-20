@@ -4,7 +4,6 @@ name: Module Tests
 on: [push, pull_request]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -22,7 +21,7 @@ jobs:
           POSTGRES_PASSWORD: password
           POSTGRES_DB: test_database
         volumes:
-          - ./init_test_db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+          - ./.github/workflows/init_test_db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
