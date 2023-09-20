@@ -2,9 +2,9 @@
 from setuptools import setup
 
 setup(
-    name='dbtest',
+    name='unit-db-test',
     version='0.1',
-    packages=['dbtest'],
+    packages=['unit_db_test'],
     install_requires=[
         'dotenv',
         'unittest',

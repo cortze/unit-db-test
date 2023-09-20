@@ -6,3 +6,8 @@ venv/
 
 # caches
 */__pycache__/
+
+# PyPI integration file
+.pypirc
+build
+*.egg-info
