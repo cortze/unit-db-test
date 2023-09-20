@@ -8,12 +8,12 @@ from dbtest.utils import load_credentials_from
 
 
 class DBintegrityTest(unittest.TestCase):
-    db_config_file = "../.env"
+    db_config_file = ".env"
 
     # Initialization and configuration of the database
     def dbCredentials(self):
         """ replace this function at each unitt db integrity test with the db credentials """
-        self.db_config_file = "../.env"
+        self.db_config_file = ".env"
 
     def readCredentialsFromEnv(self):
         return load_credentials_from(self.db_config_file)

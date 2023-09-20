@@ -15,5 +15,4 @@ def get_db_from_env():
     port = os.getenv('DB_PORT')
     database = os.getenv('DB_DATABASE')
     url = os.getenv('DB_URL')
-    print(user, password, host, port, database, url)
     return user, password, host, port, database, url
