@@ -23,9 +23,9 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_USER: $PG_USER
-          POSTGRES_PASSWORD: $PGPASSWORD
-          POSTGRES_DB: $PG_DATABASE
+          POSTGRES_USER: ${{ env.PG_USER }}
+          POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
+          POSTGRES_DB: ${{ env.PG_DATABASE }}
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -37,7 +37,7 @@ jobs:
 
     - name: Check psql mounting point
       run: | 
-        psql -h localhost -U $PG_USER -d $PG_DATABASE -a -f psql/init_test_db.sql
+        psql -h localhost -U ${{ env.PG_USER }} -d ${{ env.PG_DATABASE }} -a -f psql/init_test_db.sql
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
