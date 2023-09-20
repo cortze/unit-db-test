@@ -31,10 +31,8 @@ jobs:
 
     - name: Check psql mounting point
       run: | 
-        echo "$PWD"
-        echo "workspace"
-        ls -la ${{ github.workspace }}
-        psql -h localhost -U test_user -d test_database -a -f psql/init_test_db.sql
+        PGPASSWORD=password
+        psql -h localhost -U test_user -P password -d test_database -a -f psql/init_test_db.sql
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
