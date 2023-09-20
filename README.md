@@ -1,8 +1,8 @@
-# dbtest &middot; ![](https://github.com/cortze/dbtest/actions/workflows/module_tests.yml/badge.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+# unit-db-test &middot; ![](https://github.com/cortze/dbtest/actions/workflows/module_tests.yml/badge.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Is your tool hard to debug? Is it easier if you check it at the DB level? 
 
-This module is for you! **dbtests** is a Python tool for conducting database tests. It is a unittest wrapper focussed on making DB integrity tests.
+This module is for you! **unit-db-test** is a Python tool for conducting database tests. It is a unittest wrapper focussed on making DB integrity tests.
 As it is an extension over the `unittest.TestCase` it is easy to configure and easy to integrate with GitHub actions.
 
 
@@ -18,7 +18,7 @@ As it is an extension over the `unittest.TestCase` it is easy to configure and e
 You can install **dbtests** using pip:
 
 ```bash
-pip install dbtests
+pip install unit-db-test
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ my-tool/
 # test_script_1.py
 # Dependencies
 import unittest
-from dbtest.unittest import DBintegrityTest
+from unit-db-test.testcase import DBintegrityTest
 ```
 
 3. Create a `DBintegrityTest` as if it was a `unittest.TestCase`. It is important to define the path to the `.env` that keeps the Postgres DB credentials:
