@@ -1,4 +1,4 @@
-# unit-db-test &middot; ![](https://github.com/cortze/dbtest/actions/workflows/module_tests.yml/badge.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+# unit-db-test &middot; [![PyPI Release](https://img.shields.io/pypi/v/unit-db-test.svg)](https://pypi.org/project/unit-db-test/) ![](https://github.com/cortze/dbtest/actions/workflows/module_tests.yml/badge.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Is your tool hard to debug? Is it easier if you check it at the DB level? 
 
