@@ -1,4 +1,5 @@
 # testcase.py
+import pandas
 import pandas as pd
 import unittest
 
@@ -44,17 +45,19 @@ class DBintegrityTest(unittest.TestCase):
     def assertNotNullItemsInColumn(self, df: pd.DataFrame, column: str):
         nul_values = df[column].isnull().sum()
         if nul_values > 0:
-            raise AssertionError(f"column {column} has {nul_values} null values, expected 0")
+            raise AssertionError(f"column {column} has {nul_values} null values, expected 0\n{self.addDFtoLog(df)}")
 
     def assertCustomNullItemsInColumn(self, df: pd.DataFrame, column: str, target: int):
         nul_values = df[column].isnull().sum()
         if nul_values != target:
-            raise AssertionError(f"column {column} has {nul_values} null values, expected {target}")
+            raise AssertionError(f"column {column} has {nul_values} null values, expected {target}\n{self.addDFtoLog(df)}")
 
     def assertNoRows(self, df: pd.DataFrame):
         self.assertNRows(df, 0)
 
     def assertNRows(self, df: pd.DataFrame, target_rows: int):
         if len(df) != target_rows:
-            raise AssertionError(f"df has {len(df)} rows, expected {target_rows}")
+            raise AssertionError(f"df has {len(df)} rows, expected {target_rows}\n{self.addDFtoLog(df)}")
 
+    def addDFtoLog(self, df: pandas.DataFrame):
+        return f"\nDF that generated the error:\n{df}"
