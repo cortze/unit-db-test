@@ -8,6 +8,6 @@ venv/
 */__pycache__/
 
 # PyPI integration file
-./build
-./dist
+build
+dist
 *.egg-info
