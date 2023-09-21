@@ -1,6 +1,6 @@
 # unit-db-test &middot; [![PyPI Release](https://img.shields.io/pypi/v/unit-db-test.svg)](https://pypi.org/project/unit-db-test/) ![](https://github.com/cortze/dbtest/actions/workflows/module_tests.yml/badge.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Is your tool hard to debug? Is it easier if you check it at the DB level? 
+Is your tool hard to debug? Would it be easier to check it at the DB level? 
 
 This module is for you! **unit-db-test** is a Python tool for conducting database tests. It is a unittest wrapper focussed on making DB integrity tests.
 As it is an extension over the `unittest.TestCase` it is easy to configure and easy to integrate with GitHub actions.
@@ -10,8 +10,8 @@ As it is an extension over the `unittest.TestCase` it is easy to configure and e
 ## Features
 
 - It has an integrated connection to a Postgres Database: easily configurable using the `.env` file.
-- Fully compatible with `SQLAlchemy` and `Pandas`: get a `panda.Dataframe` out of any SQL query you want to test.
-- Unit-test oriented: Check if the `panda.Dataframe` output matches the expected values, or catch it when the test fails.
+- Fully compatible with `SQLAlchemy` and `Pandas`: get a `pandas.Dataframe` out of any SQL query you want to test.
+- Unit-test oriented: Check if the `pandas.Dataframe` output matches the expected values, or catch it when the test fails.
 
 ## Installation
 
@@ -76,7 +76,7 @@ For more examples, please check:
 - [Test example](https://github.com/cortze/unit-db-test/tests/module.py)
 
 ## Custom Assert 
-The **dbtest** module contemplates new assert functions over `panda.Dataframe` objects. 
+The **dbtest** module contemplates new assert functions over `pandas.Dataframe` objects. 
 This way the result of a simple query can be easily checked with the standard `unittest` nomenclature.
 
 The list of current Asserts is the following:
@@ -105,4 +105,4 @@ Author: Mikel Cortes ([@cortze](https://github.com/cortze))
 Feel free to reach out if you have any questions or suggestions!
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/cortze/unit-db-test/LICENSE) file for details.
