@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools", "setuptools_scm[toml]"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unit-db-test"
+description = "Unittest wrapper focused on making DB integrity tests"
+readme = "README.md"
+license = {file = "LICENSE"}
+maintainers = [
+    {name = "@cortze | Mikel Cortes ", email = "cortze@protonmail.com"},
+]
+requires-python = ">=3.10"
+dependencies = [
+    'dotenv',
+    'unittest',
+    'psycopg2-binary',
+    'sqlalchemy',
+    'pandas',
+]
+
+dynamic = [
+    "version",
+]
+
+[tool.setuptools_scm]
+
+[project.urls]
+Repository = "https://github.com/cortze/unit-db-test"
+
+[tool.setuptools.packages.find]
+include = [
+  "unit_db_test*",
+]

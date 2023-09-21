@@ -1,8 +1,7 @@
 import unittest
-from dbtest.unittest import DBintegrityTest
+import unit_db_test.testcase as dbtest
 
-
-class TestDBTestModule(DBintegrityTest):
+class TestDBTestModule(dbtest.DBintegrityTest):
     db_config_file = '.env'
 
     def test_not_null_items_in_column(self):

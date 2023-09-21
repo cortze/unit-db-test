@@ -1,9 +1,9 @@
-# db_unit_tests.py
+# testcase.py
 import pandas as pd
 import unittest
 
-from dbtest.postgresql import Postgres
-from dbtest.utils import load_credentials_from
+from unit_db_test.postgresql import Postgres
+from unit_db_test.utils import load_credentials_from
 
 
 
