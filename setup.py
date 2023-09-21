@@ -1,15 +1,6 @@
-# setup.py
-from setuptools import setup
+#!/usr/bin/env python
 
-setup(
-    name='unit-db-test',
-    version='0.1',
-    packages=['unit_db_test'],
-    install_requires=[
-        'dotenv',
-        'unittest',
-        'psycopg2-binary',
-        'sqlalchemy',
-        'pandas',
-    ],
-)
+import setuptools
+
+if __name__ == "__main__":
+    setuptools.setup()
