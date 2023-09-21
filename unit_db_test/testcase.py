@@ -2,8 +2,8 @@
 import pandas as pd
 import unittest
 
-from unit_db_test.postgresql import Postgres
-from unit_db_test.utils import load_credentials_from
+from unit_db_test.postgresql import Postgres, NoConnectionToDBError
+from unit_db_test.utils import load_credentials_from, NoEnvVariableError
 
 
 
@@ -26,9 +26,10 @@ class DBintegrityTest(unittest.TestCase):
         try:
             u, p, i, port, db, url = self.readCredentialsFromEnv()
             self.connectDB(u, p, i, port, db, url)
-        except Exception as e:
-            self.assertRaise(e)
-            self.fail("unable to make connection to the DB")
+        except NoEnvVariableError as envError:
+            raise envError
+        except NoConnectionToDBError as dbError:
+            raise dbError
 
     def setDown(self):
         self.db.close()
@@ -47,7 +48,7 @@ class DBintegrityTest(unittest.TestCase):
     def assertNoRows(self, df: pd.DataFrame):
         self.assertNRows(df, 0)
 
-    def assertNRows(self, df: pd.DataFrame, target_rows: str):
+    def assertNRows(self, df: pd.DataFrame, target_rows: int):
         if len(df) != target_rows:
-            raise AssertionError(f"df has {len(df)} items, expected {target_rows}")
+            raise AssertionError(f"df has {len(df)} rows, expected {target_rows}")
 

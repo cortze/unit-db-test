@@ -1,7 +1,15 @@
 # postgresql.py
 import pandas as pd
+import psycopg2 as pspg
 import sqlalchemy as sa
 
+
+class  NoConnectionToDBError(Exception):
+    def __init__(self, cause):
+        self.cause = cause
+
+    def cause(self):
+        return self.cause
 
 def parse_db_endpoint_string(s):
     user = s.split(":")[1].split("@")[0].split("//")[1]
@@ -15,23 +23,27 @@ def parse_db_endpoint_string(s):
 class Postgres:
     def __init__(
         self,
-        port=None,
-        user=None,
-        password=None,
-        database=None,
-        host="localhost",
-        url=None,
+        user: str,
+        password: str,
+        host: str,
+        port: str,
+        database: str,
     ):
-        self.port = port
         self.user = user
         self.password = password
+        self.host = host
+        self.port = port
         self.database = database
-        if url is not None:
-            self.engine = sa.create_engine(url=url)
-        else:
-            self.url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
-            self.engine = sa.create_engine(url=url)
-        self.conn = self.engine.connect()
+        self.url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
+        try:
+            self.engine = sa.create_engine(url=self.url)
+            self.conn = self.engine.connect()
+        except pspg.OperationalError as dbError:
+            print(f"Error connecting to the database: {dbError}")
+            raise NoConnectionToDBError(dbError)
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            raise NoConnectionToDBError(e)
 
     def get_df_from_sql_query(self, sql_query):
         return pd.read_sql_query(sa.text(sql_query), self.conn)
