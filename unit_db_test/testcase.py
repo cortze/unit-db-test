@@ -9,30 +9,36 @@ from unit_db_test.utils import load_credentials_from, NoEnvVariableError
 
 class DBintegrityTest(unittest.TestCase):
     db_config_file = ".env"
+    db = None
 
     # Initialization and configuration of the database
-    def dbCredentials(self):
+    @classmethod
+    def dbCredentials(cls):
         """ replace this function at each unitt db integrity test with the db credentials """
-        self.db_config_file = ".env"
+        cls.db_config_file = ".env"
 
-    def readCredentialsFromEnv(self):
-        return load_credentials_from(self.db_config_file)
+    @classmethod
+    def readCredentialsFromEnv(cls):
+        return load_credentials_from(cls.db_config_file)
 
-    def connectDB(self, user, password, ip, port, db, url):
-        self.db = Postgres(user=user, password=password, host=ip, port=port, database=db, url=url)
+    @classmethod
+    def connectDB(cls, user, password, ip, port, db):
+        cls.db = Postgres(user=user, password=password, host=ip, port=port, database=db)
 
     # setup main function for the db connection
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         try:
-            u, p, i, port, db, url = self.readCredentialsFromEnv()
-            self.connectDB(u, p, i, port, db, url)
+            u, p, i, port, db = cls.readCredentialsFromEnv()
+            cls.connectDB(u, p, i, port, db)
         except NoEnvVariableError as envError:
             raise envError
         except NoConnectionToDBError as dbError:
             raise dbError
 
-    def setDown(self):
-        self.db.close()
+    @classmethod
+    def setDownClass(cls):
+        cls.db.close()
 
     # Extension of the pre-available assert-methods (Panda Oriented)
     def assertNotNullItemsInColumn(self, df: pd.DataFrame, column: str):

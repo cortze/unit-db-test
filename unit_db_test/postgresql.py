@@ -39,10 +39,8 @@ class Postgres:
             self.engine = sa.create_engine(url=self.url)
             self.conn = self.engine.connect()
         except pspg.OperationalError as dbError:
-            print(f"Error connecting to the database: {dbError}")
             raise NoConnectionToDBError(dbError)
         except Exception as e:
-            print(f"An unexpected error occurred: {e}")
             raise NoConnectionToDBError(e)
 
     def get_df_from_sql_query(self, sql_query):
