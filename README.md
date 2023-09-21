@@ -72,8 +72,8 @@ python -m unittest tests/test_script_1.py
 
 The tests can be run locally or integrated with Github Actions. 
 For more examples, please check:
-- [Github Action example](https://github.com/cortze/unit-db-test/.github/workflows/module_tests.yml)
-- [Test example](https://github.com/cortze/unit-db-test/tests/module.py)
+- [Github Action example](https://github.com/cortze/unit-db-test/blob/main/.github/workflows/module_tests.yml)
+- [Test example](https://github.com/cortze/unit-db-test/blob/main/tests/test_module.py)
 
 ## Custom Assert 
 The **dbtest** module contemplates new assert functions over `pandas.Dataframe` objects. 
@@ -105,4 +105,4 @@ Author: Mikel Cortes ([@cortze](https://github.com/cortze))
 Feel free to reach out if you have any questions or suggestions!
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/cortze/unit-db-test/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/cortze/unit-db-test/blob/main/LICENSE) file for details.
