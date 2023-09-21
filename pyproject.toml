@@ -1,16 +1,16 @@
 [build-system]
-requires = ["setuptools", "setuptools_scm[toml]"]
+requires = ["setuptools", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "unit-db-test"
-description = "Unittest wrapper focused on making DB integrity tests"
-readme = "README.md"
-license = {file = "LICENSE"}
-maintainers = [
+authors = [
     {name = "@cortze | Mikel Cortes ", email = "cortze@protonmail.com"},
 ]
+description = "Unittest wrapper focused on making DB integrity tests"
+readme = "README.md"
 requires-python = ">=3.8"
+license = {file = "LICENSE"}
 dependencies = [
     'dotenv',
     'unittest',
@@ -18,9 +18,10 @@ dependencies = [
     'sqlalchemy',
     'pandas',
 ]
+dynamic = ["version", ]
 
-[tool.setuptools_scm]
-version = true
+[tool.setuptools.dynamic]
+version = {attr = "unit-db-test.VERSION"}
 
 [project.urls]
 Repository = "https://github.com/cortze/unit-db-test"
