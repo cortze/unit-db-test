@@ -1,10 +1,9 @@
 [build-system]
-requires = ["setuptools", "setuptools_scm", "setuptools-git-versioning"]
+requires = ["setuptools", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "unit-db-test"
-dynamic = ["version"]
 authors = [
     {name = "@cortze | Mikel Cortes ", email = "cortze@protonmail.com"},
 ]
@@ -19,9 +18,9 @@ dependencies = [
     'sqlalchemy',
     'pandas',
 ]
+dynamic = ["version"]
 
-[tool.setuptools-git-versioning]
-enabled = true
+[tool.setuptools_scm]
 
 [project.urls]
 Repository = "https://github.com/cortze/unit-db-test"
