@@ -40,7 +40,7 @@ my-tool/
 # test_script_1.py
 # Dependencies
 import unittest
-from unit-db-test.testcase import DBintegrityTest
+from unit_db_test.testcase import DBintegrityTest
 ```
 
 3. Create a `DBintegrityTest` as if it was a `unittest.TestCase`. It is important to define the path to the `.env` that keeps the Postgres DB credentials:
