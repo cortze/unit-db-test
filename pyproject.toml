@@ -11,16 +11,12 @@ description = "Unittest wrapper focused on making DB integrity tests"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
-dependencies = [
-    'python-dotenv',
-    'unittest',
-    'psycopg2-binary',
-    'sqlalchemy',
-    'pandas',
-]
-dynamic = ["version"]
+dynamic = ["version", "dependencies"]
 
 [tool.setuptools_scm]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
 
 [project.urls]
 Repository = "https://github.com/cortze/unit-db-test"
