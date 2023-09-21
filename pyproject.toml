@@ -2,18 +2,14 @@
 requires = ["setuptools", "setuptools_scm[toml]"]
 build-backend = "setuptools.build_meta"
 
-[metadata]
+[project]
 name = "unit-db-test"
 description = "Unittest wrapper focused on making DB integrity tests"
 readme = "README.md"
-license = "MIT"
-author = "Mikel Cortes | @cortze"
-author-email = "cortze@protonmail.com"
-maintainer = "Mikel Cortes | @cortze"
-maintainer-email = "cortze@protonmail.com"
-url = "https://github.com/cortze/unit-db-test"
-
-[project]
+license = {file = "LICENSE"}
+maintainers = [
+    {name = "@cortze | Mikel Cortes ", email = "cortze@protonmail.com"},
+]
 requires-python = ">=3.8"
 dependencies = [
     'dotenv',
