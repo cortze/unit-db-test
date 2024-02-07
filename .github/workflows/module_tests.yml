@@ -41,8 +41,6 @@ jobs:
           CLICKHOUSE_USER: ${{ env.PG_USER }}
           CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
           CLICKHOUSE_PASSWORD: ${{ env.PGPASSWORD }}
-        volumes:
-          - sql/docker_init_clickchouse_test_db.sql:/docker-entrypoint-initdb.d/docker_init_db_test.sql
         ports:
           - "8123:8123"
           - "9000:9000"
@@ -53,6 +51,10 @@ jobs:
     - name: Check psql mounting point
       run: |
         psql -h localhost -U ${{ env.PG_USER }} -d ${{ env.PG_DATABASE }} -a -f sql/docker_init_postgresql_test_db.sql
+
+    - name: Check psql mounting point
+      run: |
+        clickhouse-client --multiquery < sql/docker_init_clickchouse_test_db.sql
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
