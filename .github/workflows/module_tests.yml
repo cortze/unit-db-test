@@ -46,6 +46,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      
+    # Install ClickHouse client
+    - name: Install ClickHouse client
+      run: sudo apt-get update && sudo apt-get install -y clickhouse-client
 
     - name: Init psql database with .sql
       run: |
