@@ -11,3 +11,16 @@ services:
       - POSTGRES_DB=${DB_DATABASE}
     volumes:
       - ./psql/docker_init_test_db.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    environment:
+      - CLICKHOUSE_DB=${DB_DATABASE}
+      - CLICKHOUSE_USER=${DB_USER}
+      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
+      - CLICKHOUSE_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./psql/docker_init_clickhouse_test_db.sql:/docker-entrypoint-initdb.d/docker_init_test_db.sql
+    ports:
+      - "8123:8123"
+      - "9000:9000"
