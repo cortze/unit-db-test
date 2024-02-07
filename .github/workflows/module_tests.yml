@@ -26,18 +26,39 @@ jobs:
           POSTGRES_USER: ${{ env.PG_USER }}
           POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
           POSTGRES_DB: ${{ env.PG_DATABASE }}
+
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
 
+      clickhouse:
+        image: clickhouse/clickhouse-server
+        env:
+          CLICKHOUSE_DB: ${{ env.PG_DATABASE }}
+          CLICKHOUSE_USER: ${{ env.PG_USER }}
+          CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+          CLICKHOUSE_PASSWORD: ${{ env.PGPASSWORD }}
+        ports:
+          - "8123:8123"
+          - "9000:9000"
+
     steps:
     - uses: actions/checkout@v3
 
-    - name: Check psql mounting point
-      run: | 
-        psql -h localhost -U ${{ env.PG_USER }} -d ${{ env.PG_DATABASE }} -a -f psql/init_test_db.sql
+    # Install ClickHouse client
+    - name: Install ClickHouse client
+      run: curl https://clickhouse.com/ | sh
+
+    - name: Init psql database with .sql
+      run: |
+        psql -h localhost -U ${{ env.PG_USER }} -d ${{ env.PG_DATABASE }} -a -f sql/docker_init_postgresql_test_db.sql
+
+    - name: Init clickhouse database with .sql
+      run: |
+        ./clickhouse client --user ${{ env.PG_USER }} --password ${{ env.PGPASSWORD }} --multiquery < sql/docker_init_clickhouse_test_db.sql
+
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3

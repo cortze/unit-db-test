@@ -44,9 +44,10 @@ from unit_db_test.testcase import DBintegrityTest
 ```
 
 3. Create a `DBintegrityTest` as if it was a `unittest.TestCase`. It is important to define the path to the `.env` that keeps the Postgres DB credentials:
+
 ```python
 class TestDBTestModule(DBintegrityTest):
-    db_config_file = '.env'
+    db_config_file = '.postgresql.env'
 ```
 
 4. Create as many `test` functions as pleased:
