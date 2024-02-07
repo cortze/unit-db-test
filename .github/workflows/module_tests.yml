@@ -57,7 +57,7 @@ jobs:
 
     - name: Init clickhouse database with .sql
       run: |
-        ./clickhouse client --multiquery < sql/docker_init_clickhouse_test_db.sql
+        ./clickhouse client --user ${{ env.PG_USER }} --password ${{ env.PG_PASSWORD }} --multiquery < sql/docker_init_clickhouse_test_db.sql
 
 
     - name: Set up Python ${{ matrix.python-version }}
