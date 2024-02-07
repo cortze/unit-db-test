@@ -46,10 +46,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      
+
     # Install ClickHouse client
     - name: Install ClickHouse client
-      run: sudo apt-get update && sudo apt-get install -y clickhouse-client
+      run: curl https://clickhouse.com/ | sh
 
     - name: Init psql database with .sql
       run: |
@@ -57,7 +57,7 @@ jobs:
 
     - name: Init clickhouse database with .sql
       run: |
-        clickhouse-client --multiquery < sql/docker_init_clickhouse_test_db.sql
+        ./clickhouse client --multiquery < sql/docker_init_clickhouse_test_db.sql
 
 
     - name: Set up Python ${{ matrix.python-version }}
