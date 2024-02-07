@@ -28,7 +28,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
           POSTGRES_DB: ${{ env.PG_DATABASE }}
         volumes:
-          - ./psql/docker_init_postgresql_test_db.sql:/docker-entrypoint-initdb.d/docker_init_db_test.sql
+          - sql/docker_init_postgresql_test_db.sql:/docker-entrypoint-initdb.d/docker_init_db_test.sql
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -43,7 +43,7 @@ jobs:
           CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
           CLICKHOUSE_PASSWORD: ${{ env.PGPASSWORD }}
         volumes:
-          - ./psql/docker_init_clickchouse_test_db.sql:/docker-entrypoint-initdb.d/docker_init_db_test.sql
+          - sql/docker_init_clickchouse_test_db.sql:/docker-entrypoint-initdb.d/docker_init_db_test.sql
         ports:
           - "8123:8123"
           - "9000:9000"
