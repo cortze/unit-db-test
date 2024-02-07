@@ -18,6 +18,7 @@ jobs:
         python-version: ["3.10", "3.11"]
 
     services:
+
       postgres:
         image: postgres:14.1-alpine
         ports:
@@ -31,6 +32,19 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
+      clickhouse:
+        image: clickhouse/clickhouse-server
+        env:
+          CLICKHOUSE_DB: ${{ env.PG_DATABASE }}
+          CLICKHOUSE_USER: ${{ env.PG_USER }}
+          CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+          CLICKHOUSE_PASSWORD: ${{ env.PGPASSWORD }}
+        volumes:
+          - ./psql/docker_init_clickchouse_test_db.sql:/docker-entrypoint-initdb.d/docker_init_test_db.sql
+        ports:
+          - "8123:8123"
+          - "9000:9000"
 
     steps:
     - uses: actions/checkout@v3
