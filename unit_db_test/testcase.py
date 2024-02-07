@@ -3,7 +3,7 @@ import pandas
 import pandas as pd
 import unittest
 
-from unit_db_test.postgresql import Postgres, NoConnectionToDBError
+from unit_db_test.sql_alchemy_driver import SQLDatabase, NoConnectionToDBError
 from unit_db_test.utils import load_credentials_from, NoEnvVariableError
 
 
@@ -23,15 +23,15 @@ class DBintegrityTest(unittest.TestCase):
         return load_credentials_from(cls.db_config_file)
 
     @classmethod
-    def connectDB(cls, user, password, ip, port, db):
-        cls.db = Postgres(user=user, password=password, host=ip, port=port, database=db)
+    def connectDB(cls, driver, user, password, ip, port, db):
+        cls.db = SQLDatabase(sql_driver=driver, user=user, password=password, host=ip, port=port, database=db)
 
     # setup main function for the db connection
     @classmethod
     def setUpClass(cls):
         try:
-            u, p, i, port, db = cls.readCredentialsFromEnv()
-            cls.connectDB(u, p, i, port, db)
+            d, u, p, i, port, db = cls.readCredentialsFromEnv()
+            cls.connectDB(d, u, p, i, port, db)
         except NoEnvVariableError as envError:
             raise envError
         except NoConnectionToDBError as dbError:

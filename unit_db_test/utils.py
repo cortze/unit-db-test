@@ -31,9 +31,10 @@ def read_env_var(var_name: str):
 
 
 def get_db_credentials_from_env():
+    driver = read_env_var('DB_DRIVER')
     user = read_env_var('DB_USER')
     password = read_env_var('DB_PASSWORD')
     host = read_env_var('DB_HOST')
     port = read_env_var('DB_PORT')
     database = read_env_var('DB_DATABASE')
-    return user, password, host, port, database
+    return driver, user, password, host, port, database
