@@ -27,8 +27,7 @@ jobs:
           POSTGRES_USER: ${{ env.PG_USER }}
           POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
           POSTGRES_DB: ${{ env.PG_DATABASE }}
-        volumes:
-          - sql/docker_init_postgresql_test_db.sql:/docker-entrypoint-initdb.d/docker_init_db_test.sql
+
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -50,6 +49,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Check psql mounting point
+      run: |
+        psql -h localhost -U ${{ env.PG_USER }} -d ${{ env.PG_DATABASE }} -a -f sql/docker_init_postgresql_test_db.sql
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
